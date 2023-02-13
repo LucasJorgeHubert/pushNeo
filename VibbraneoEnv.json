@@ -1,0 +1,1682 @@
+{
+  "uuid": "7f4dba89-61ad-4fe0-86c4-1240f86fee5e",
+  "lastMigration": 19,
+  "name": "VibbraneoEnv",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "4afcfc72-86ba-48ce-837e-18ecec2d8fda",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "login",
+      "responses": [
+        {
+          "uuid": "2995de54-8571-45ad-880f-e7df14338d10",
+          "body": "{\n\t\"token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n\t\"user\": {\n    \t    \"id\": 1,\n    \t    \"name\": \"Jhon Due\",\n     \t    \"email\": \"jhon.due@mail.com\",\n  \t }\n}\n",
+          "latency": 1000,
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "login",
+              "value": "jhon.due@mail.com",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "123123",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "4c21d69c-db77-420c-b556-97a2f79e194f",
+          "body": "{\n  \"error\": \"Usuário não autenticado\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "Usuário não autenticado",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "login",
+              "value": "jhon.due@mail.comm",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "12eb00e6-114a-4c92-9c1a-7f2ec78a850c",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/register",
+      "responses": [
+        {
+          "uuid": "ef70a35e-8cc9-4a93-aacf-386971f1116f",
+          "body": "{\n\t\"id\": 1\n}\n",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "User created",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "jhon.due@mail.com",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "name",
+              "value": "Jhon Due",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "123123",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "c71f7a3f-9816-400d-8da6-159a03528ddc",
+          "body": "{\n  \"error\": \"Ocorreu um erro, por favor, tente novamente mais tarde\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "e5937d44-6f0b-4e73-ab81-edbb12c3e905",
+          "body": "{\n  \"error\": \"Ocorreu um erro, por favor, tente novamente mais tarde\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "cd155e77-676c-46e0-8b87-c397d0dd087a",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/:id",
+      "responses": [
+        {
+          "uuid": "742c40cd-4f24-46bd-b7e5-a37623ec420b",
+          "body": "{\n\t\"id\": 1,\n\t\"email\": \"jhon.due@mail.com\",\n  \"name\": \"Jhon Due\",\n\t\"company_name\": \"jhondue Co\",\n\t\"phone_number\": \"0123123123\",\n\t\"company_address\": \"jhon street, 100\",\n\t\"password\": \"password123\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "633ec6ca-4f52-4a44-ad01-aeced86c687f",
+          "body": "{\n  \"error\": \"User not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "User not found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "2",
+              "operator": "equals"
+            },
+            {
+              "target": "header",
+              "modifier": "Bearer",
+              "value": "",
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "f8ddd1e8-2bb4-48e7-9be3-b92fed1addb2",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "02eaf43a-af6f-41b8-b0fa-35ad83e67561",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "3d5d3fb2-35a2-43b0-b978-2c036f89250d",
+          "body": "{\n  \"error\": \"User unauthorized\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "Unauthorized",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "",
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "5cb3ce34-d54e-4629-a2a7-a22ac7f1755c",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "apps",
+      "responses": [
+        {
+          "uuid": "9c0cff83-293b-4b41-95c2-7fd1eab6cc44",
+          "body": "{\n\t\"app_id\": 1,\n\t\"app_token\": \"Push App\"\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "App created",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "704efafb-2287-4235-b20f-4b8669f1eba4",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "app_name",
+              "value": "PushApp",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "e5a19eaf-f786-4a9c-a8eb-27d4cb8c1458",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "app_name",
+              "value": "PushApp",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "238e5378-2978-45bd-bccf-35b8c0dda03e",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "app_name",
+              "value": "PushApp",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "66a0af0a-f756-46dd-abf0-9c955fd742eb",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "apps/:id",
+      "responses": [
+        {
+          "uuid": "cb4ae7eb-1237-46a4-8af2-b55d85f8557e",
+          "body": "{\n\t\"app_id\": 1,\n\t\"app_name\": \"Push App\",\n\t\"app_token\": \"pushApp\",\n\t\"active_channels\": {\n    \"webpush\": true,\n    \"email\": false,\n    \"sms\": false,\n\t}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "App",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "7f6d5542-586e-40af-b84e-807a4e0e2b5a",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "245fed76-cdd7-4cbc-bde3-1a5cb1ae2a46",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "9ec88a29-b443-46c9-aad0-f85606519531",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "96b0d320-7302-4506-a1d8-5e819e1e335f",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "apps/:id/webpushes/settings",
+      "responses": [
+        {
+          "uuid": "89f7546b-c7cf-460c-82ba-7ffa1126dd73",
+          "body": "{\n\t\"previous_status\": 1,\n\t\"current_status\": 0\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "App",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "2ccf4f7e-e9d9-45e4-9a70-3a01c0cd7cd6",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "9f83fcf2-8a35-4148-8797-6bf415e8bf06",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "4c0cee61-6685-4dd9-bf16-803c15a5eb57",
+          "body": "{\n  \"error\": \"App not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "608a1bbe-c972-49ed-818f-acdd3d6b442c",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "apps/:id/webpushes/settings",
+      "responses": [
+        {
+          "uuid": "acdf0233-dbf8-4d9f-ac25-fd8f257126a2",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "App",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "6bba6c70-ec89-4c63-a8f0-9c8c494db73c",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "5facfc6e-b2e3-4e86-88e9-bdbf3331f470",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "8a0e7800-d5b4-417f-8828-79947b4dcba9",
+          "body": "{\n  \"error\": \"App not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "2cf7e946-3b2e-46ed-85ba-5ffe71060d4d",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "apps/:id/webpushes/settings",
+      "responses": [
+        {
+          "uuid": "483a4e25-da50-49d7-b047-64c7aa68fa9d",
+          "body": "{\n\t\"settings\": {\n\t\t\"site\": {\n\t\t\t\"name\": \"Vem ser Vibbrante\",\n\t\t\t\"address\": \"https://www.vibbra.com.br\",\n\t\t\t\"url_icon\": \"https://cdn-icons-png.flaticon.com/512/169/169367.png\"\n\t\t},\n\t\t\"allow_notification\": {\n\t\t\t\"message_text\": \"Permite que Vibbranew te envie notificações\",\n\t\t\t\"allow_button_text\": \"Permitir\",\n\t\t\t\"deny_button_text\": \"Negar\"\n\t\t},\n\t\t\"welcome_notification\": {\n\t\t\t\"message_title\": \"Muito obrigado por aceitar\",\n\t\t\t\"message_text\": \"Vibbraneo\",\n\t\t\t\"enable_url_redirect\": 1,\n\t\t\t\"url_redirect\": \"https://www.vibbra.com.br\"\n\t\t}\n\t}\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Return Push App Test",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "ca5b31ec-8e35-4d43-a4b3-9fc4486d3185",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "9b0c1ea7-61eb-4800-9419-1e8678c08874",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "316a2dfb-6847-4d0a-9834-836c49647b99",
+          "body": "{\n  \"error\": \"App not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "654b3fe9-bca1-456b-996e-e3d5186e7f86",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "apps/:id/emails/settings",
+      "responses": [
+        {
+          "uuid": "e053ebc5-be27-4876-bcfd-4512a3fe1e9c",
+          "body": "{\n\t\"previous_status\": 1,\n\t\"current_status\": 0\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "App",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "75fdec27-cc69-4f61-8470-c59567f48841",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "2797c0ac-5d4d-401f-ac32-08a8f469a1c6",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "b080bbf2-14d6-4d7c-a291-15fb29fbc680",
+          "body": "{\n  \"error\": \"App not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "79de668a-a535-4eb7-b887-c8189b3cea68",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "apps/:id/emails/settings",
+      "responses": [
+        {
+          "uuid": "4c29ac3b-1ccd-4133-9068-6b657c6292e3",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "App",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "5bd0e3ba-f19b-431b-8a8c-939ecd2e2f30",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "f069e1d9-7453-4c6d-942d-60b87fbe85b4",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "c26a500a-baa9-4031-90fc-858525ff7247",
+          "body": "{\n  \"error\": \"App not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "3e5d2474-20f8-4394-ba6b-af3108964611",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "apps/:id/emails/settings",
+      "responses": [
+        {
+          "uuid": "ef801f35-4592-4731-b296-7d13e11aa2fd",
+          "body": "{\n\t\"settings\": {\n\t\t\"server\": {\n\t\t\t\"smtp_name\": \"smtp.vibbraneo.com\",\n\t\t\t\"smpt_port\": \"8080\",\n\t\t\t\"user_login\": \"smtp_vibbraneo\",\n\t\t\t\"user_password\": \"vibbra@2022\"\n\t\t},\n\t\t\"sender\": {\n\t\t\t\"name\": \"Vibbraneo Push\",\n\t\t\t\"email\": \"no-reply@vibbraneo.com\"\n\t\t},\n\t\t\"email_templates\": [\n\t\t\t{\n\t\t\t\t\"name\": \"Promo Week\",\n\t\t\t\t\"uri\": \"https://www.vibbra.com.br\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\": \"Promo Friday\",\n\t\t\t\t\"uri\": \"https://www.vibbra.com.br\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\": \"Semana de ofertas\",\n\t\t\t\t\"uri\": \"https://www.vibbra.com.br\"\n\t\t\t}\n\t\t]\n\t}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Return Push App Test",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "627384e3-7566-4ab1-b360-b4c3bb985f8d",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "80a42471-e76f-4c69-94ab-d9dc8492533b",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "0b175663-22c8-4d0e-94a7-25c9a886daaa",
+          "body": "{\n  \"error\": \"App not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "d6a6919a-b4fd-4cea-b70d-8cc8097e1fbf",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "apps/:id/sms/settings",
+      "responses": [
+        {
+          "uuid": "5496de72-d39c-42c7-ad90-362ff8c76dac",
+          "body": "{\n\t\"previous_status\": 1,\n\t\"current_status\": 0\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "App",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "e098e7dc-9c15-4f6d-abdf-d083fecb3bdd",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "493a4525-498c-4894-b733-3ac0d9e6ec71",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "77ad3ac4-4d0a-492c-951a-c30345e6bc91",
+          "body": "{\n  \"error\": \"App not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "1089a00b-5d50-4531-9a68-45f457e38079",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "apps/:id/sms/settings",
+      "responses": [
+        {
+          "uuid": "538cbdaf-e69c-43d8-a8b6-314cff400240",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "App",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "e4b702d4-4c81-48a7-a64a-032487632fde",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "73af6c54-091a-4bd9-b55f-7ae3735f8f21",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "da9b3b8a-a24e-489d-9059-d0650e489d4b",
+          "body": "{\n  \"error\": \"App not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "cd092618-7691-4922-b87a-21016fc10a00",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "apps/:id/sms/settings",
+      "responses": [
+        {
+          "uuid": "5265a2d5-cbde-462d-91d8-3ebc102267ef",
+          "body": "{\n\t\"settings\": {\n\t\t\"sms_provider\": {\n\t\t\t\"name\": \"Vibranneo SMS\",\n\t\t\t\"login\": \"vibbraneo\",\n\t\t\t\"password\": \"vibbra@2022\"\n\t\t}\n\t}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Return Push App Test",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "20c7b83c-1f37-484b-8c4e-8fcd81ca65af",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad Request",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "004",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "2e622912-9a51-4cd3-aaa4-ceeae8a3aa6e",
+          "body": "{\n  \"error\": \"An error has occurred. Please try again\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "003",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "5a497ff9-0d16-4836-b70d-8766281f0530",
+          "body": "{\n  \"error\": \"App not found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "002",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "51e904ac-94d6-4f5e-82e0-bae9b96259b0",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "apps/:id/:channel/notifications",
+      "responses": [
+        {
+          "uuid": "4a226912-c553-4b32-9e68-2bbbd263344e",
+          "body": "{\n\t\"notification_id\": 1\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Email",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "channel",
+              "value": "emails",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "8bd2ea25-cd53-4d21-9d67-2e48f3af58c7",
+          "body": "{\n\t\"notification_id\": 001\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "webpushes",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "channel",
+              "value": "webpushes",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "b73ae012-237e-4bae-b381-96fb6e69e65a",
+          "body": "{\n\t\"notification_id\": 001\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SMS",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "channel",
+              "value": "sms",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "8c606cc6-ab2b-450f-a8f0-89b1a16075f0",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "apps/:id/:channel/notifications",
+      "responses": [
+        {
+          "uuid": "f087e538-bab3-4204-896a-aaf55d0a6eb5",
+          "body": "{\n      \"notifications\": [\n      ]\n}\n",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "Email",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "channel",
+              "value": "email",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "6400d9da-95bb-416e-a2e1-72125fe2bb35",
+          "body": "{\n      \"notifications\": [\n    \t{\n\t        \"notification_id\": 8,\n\t        \"send_date\": \"2022-05-22T18:25:43.511Z\"\n    \t},\n    \t{\n\t        \"notification_id\": 9,\n\t        \"send_date\": \"2022-04-10T18:25:43.511Z\"\n    \t},\n    \t{\n\t        \"notification_id\": 10,\n\t        \"send_date\": \"2022-07-17T18:25:43.511Z\",\n    \t},\n      ]\n}\n",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "webpushes",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "channel",
+              "value": "webpushes",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "710ad404-6844-43cd-9521-2ebbfde5168a",
+          "body": "{\n      \"notifications\": [\n    \t{\n\t        \"notification_id\": 5,\n\t        \"send_date\": \"2022-12-22T18:25:43.511Z\"\n    \t},\n    \t{\n\t        \"notification_id\": 6,\n\t        \"send_date\": \"2022-04-10T18:25:43.511Z\"\n    \t},\n      ]\n}\n",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "SMS",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "channel",
+              "value": "sms",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "ca364875-9a80-4b3e-bc0f-0442d6313751",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "apps/:id/:channel/notifications/:notification_id",
+      "responses": [
+        {
+          "uuid": "98472b19-a7ba-4eb3-9c69-b77baf5b5e4f",
+          "body": "{\n\t\"receiver_email\": [\n    \"adeline_jeffery@hotmail.com\",\n    \"sharan_rodriguez@protonmail.com\",\n    \"verena_roberts@gmail.com\",\n    \"kesha_clarkson@gmail.com\",\n    \"janise_herbert@aol.com\",\n    \"torrie_cameron@zohomail.com\",\n    \"niki_higgins@aol.com\",\n    \"enedina_farrington@gmail.com\",\n    \"keitha_white@hotmail.com\"\n\t],\n\t\"email_template_name\": \"Email Promocional Promo Friday\",\n\t\"message_text\": \"notificação push para Promo Friday\",\n\t\"send_date\": \"2022-05-22T18:25:43.511Z\",\n\t\"received\": 5,\n\t\"opened\": 3,\n\t\"clicked\": 1,\n  \"app_id”\": 1\n}\n",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "Email",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "channel",
+              "value": "emails",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "b97020f4-e483-49be-9d7e-ac8025a28604",
+          "body": "{\n\t\"notification_id\": 001,\n\t\"audience_segments\": [\n    \"Moradores de Minas Gerais\",\n    \"Moradores de São Paulo\",\n    \"Moradores do Rio de Janeiro\",\n    \"Moradores do Espirito Santo\"\n\t],\n\t\"message_title\": \"Promoção de Verão\",\n\t\"message_text\": \"push notification para Promoção de verão\",\n\t\"icon_url\": \"https://cdn-icons-png.flaticon.com/512/169/169367.png\",\n\t\"redirect_url\": \"https://www.vibbra.com.br\",\n\t\"send_date\": \"2022-06-10T18:25:43.511Z\",\n\t\"received\": 50,\n\t\"opened\": 44,\n  \"app_id\": 001\n}\n",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "webpushes",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "channel",
+              "value": "webpushes",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "29d72e2b-de45-4753-bb0a-caeb7b602580",
+          "body": "{\n  \"phone_number\": [\n    \"+554798954334\",\n    \"+554292343334\",\n    \"+554198908223\",\n    \"+551198932134\",\n    \"+555492787996\",\n    \"+556898679065\"\n\t],\n\t\"message_text\": \"Semana de ofertas imperdíveis\",\n\t\"send_date\": \"2022-05-22T18:25:43.511Z\",\n\t\"received\": 5,\n  \"app_id\": 001\n",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "SMS",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer "
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "001",
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "channel",
+              "value": "sms",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "http://localhost:5555",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}
